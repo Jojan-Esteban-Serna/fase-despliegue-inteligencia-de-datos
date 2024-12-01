@@ -1,0 +1,39 @@
+Pasos:
+
+
+Modelos requeridos:
+
+Primer kmeans
+list_products
+label_col
+votingC
+
+prix = df_cleaned[ df_cleaned['Description'] == prod]['UnitPrice'].mean()
+    j = 0
+    while prix > threshold[j]:
+        j+=1
+        if j == len(threshold): break
+    X.loc[i, label_col[j-1]] = 1
+
+
+
+Campos: 'Description', 'UnitPrice', 'BasketPrice','Quantity'
+1. Crear la matriz de ceros y unos con list_products (estes se debe cargar)
+1.1. Usar el primer modelo kmeans para predecir la categoria de cada producto (ese modelo se debe guardar)
+2. Agregar las 6 columnas para los rangos de los precios
+        point = np.array([0, 0, 1]).reshape(1, -1)
+        cluster = kmeans.predict(point)
+        n_cluster = kmeans.predict(matrix)
+        col = 'categ_{}'.format(n_cluster)
+        for i in range(5):
+            df_cleaned.loc[:, 'categ_{}'.format(i)] = 0
+        df_cleaned.loc[:, col] = 100
+
+
+3. Predecir la categoria en la cual cae cada producto
+4. Asignar el porcentaje 100 a la categoria a la cual pertenece
+
+    df_cleaned.loc[:, col] = price_temp
+
+
+Los modelos de clasificacion esperan: 'mean' (en este caso seria el valor del producto multiplicado por la cantidad), 'categ_0', 'categ_1', 'categ_2', 'categ_3', 'categ_4'
