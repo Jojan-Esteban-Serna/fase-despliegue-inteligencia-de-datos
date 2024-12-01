@@ -65,8 +65,6 @@ if __name__ == '__main__':
 
         # Obtener recomendaciones
         cluster = obtener_recomendaciones(description, unit_price, quantity, basket_price)
-
-        # Mostrar recomendaciones en una tabla
         st.write("Se ejecuto el modelo de clasificacion y el cliente fue asignado al cluster {}".format(cluster))
         st.image(f'cluster_morpho/cluster_{cluster}.png')
         st.write("Se recomienda mostrarle al cliente productos del cluster anteriormente mencionado, esto podria aumentar las ventas.")
