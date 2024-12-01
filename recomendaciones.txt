@@ -1,0 +1,1 @@
+Una recomendacion para futuras iteraciones seria usar el dataframe con clientes categorizados (en un cluster) y recomendar al cliente productos basandose en metricas como la distancia para recomendar productos mas cercanos a el que el cliente compro

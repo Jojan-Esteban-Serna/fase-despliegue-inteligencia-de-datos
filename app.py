@@ -45,7 +45,7 @@ def obtener_recomendaciones(description, unit_price, quantity, basket_price):
         **{f'categ_{i}': df_cleaned[f'categ_{i}'] for i in range(5)}
     })
 
-    st.write("Se modificaron los datos para que se puedan predecir las categorias de los clientes y se ven asi")
+    st.write("A continuacion se muestran las caracteristicas con las que funciona el modelo de clasificacion")
     st.write(new_dataframe.head())
 
     cluster = votingC.predict(new_dataframe)[0]
@@ -67,4 +67,10 @@ if __name__ == '__main__':
         cluster = obtener_recomendaciones(description, unit_price, quantity, basket_price)
 
         # Mostrar recomendaciones en una tabla
-        st.write("Se ejecuto el modelo de clasificacion y fue asignado al cluster {}".format(cluster))
+        st.write("Se ejecuto el modelo de clasificacion y el cliente fue asignado al cluster {}".format(cluster))
+        st.image(f'cluster_morpho/cluster_{cluster}.png')
+        st.write("Se recomienda mostrarle al cliente productos del cluster anteriormente mencionado, esto podria aumentar las ventas.")
+        #Muestra un mensaje desde un archivo de texto
+        st.header('Recomendaciones')
+        with open(f'recomendaciones.txt') as f:
+            st.write(f.read())
