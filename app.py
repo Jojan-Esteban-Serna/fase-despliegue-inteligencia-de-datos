@@ -9,7 +9,7 @@ kmeans = joblib.load('kmeans.pkl')
 votingC = joblib.load('votingC.pkl')
 
 def obtener_recomendaciones(description, unit_price, quantity, basket_price):
-    df_cleaned = pd.DataFrame({'Description': [description], 'UnitPrice': [unit_price], 'Quantity': [quantity], 'BasketPrice': [basket_price]})
+    df_cleaned = pd.DataFrame({'Description': [description.upper()], 'UnitPrice': [unit_price], 'Quantity': [quantity], 'BasketPrice': [basket_price]})
     liste_produits = df_cleaned['Description']
     X = pd.DataFrame()
     for key, occurence in list_products:
@@ -39,6 +39,9 @@ def obtener_recomendaciones(description, unit_price, quantity, basket_price):
 
     st.write("Se corrio el modelo de clustering y asi se ven los datos con los respectivos ajustes")
     st.write(df_cleaned.head())
+
+    st.write("A continuacion una nube de palabras que muestra la categoria de productos que se le asigno al cliente")
+    st.image(f'clusters_categ_prod/cluster_categ_{n_cluster}.png')
 
     new_dataframe = pd.DataFrame({
         'mean': [unit_price * quantity],
